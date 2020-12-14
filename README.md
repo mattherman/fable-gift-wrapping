@@ -4,4 +4,4 @@ This was a project created for [F# Advent 2020](https://sergeytihon.com/2020/10/
 
 There are multiple implementations in `GiftWrapping.fs` showing what the algorithm looks like written in an imperative style (mirroring the pseudocode) and a functional style.
 
-For more details, please see the [blog post](www.matthewherman.net) I wrote on the topic.
+For more details, please see the [blog post](http://matthewherman.net/programming/2020/12/13/functional-gift-wrapping.html) I wrote on the topic.
