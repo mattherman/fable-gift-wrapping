@@ -77,14 +77,14 @@ module Functional =
                 else
                     endpoint)
 
-        let rec findRemainingPointsOnHull startingPoint pointOnHull candidatePoints =
+        let rec findPointsOnHull startingPoint pointOnHull candidatePoints =
             let nextPointOnHull = findNextPointOnHull pointOnHull points
             if nextPointOnHull = startingPoint then
                 [nextPointOnHull]
             else
-                nextPointOnHull::(findRemainingPointsOnHull startingPoint nextPointOnHull candidatePoints)
+                nextPointOnHull::(findPointsOnHull startingPoint nextPointOnHull candidatePoints)
 
         // Start at the leftmost point since it is guaranteed to be on the hull
         let startingPoint = points |> List.minBy (fun p -> p.X)
         let pointOnHull = startingPoint
-        findRemainingPointsOnHull startingPoint pointOnHull points
+        findPointsOnHull startingPoint pointOnHull points
