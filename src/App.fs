@@ -5,29 +5,32 @@ open Browser.Dom
 open Browser.Types
 
 open Canvas
-open Vector
+open Types
+open GiftWrapping
 
 let rnd = Random()
 
 let height = 800.
 let width = 800.
-
-let body = (document.getElementsByTagName "body").[0] :?> HTMLBodyElement
+let numberOfPoints = 50
 
 let canvas = document.getElementById "canvas" :?> HTMLCanvasElement 
 
 let ctx = canvas.getContext_2d()
 
-let getRandomPoints (): Vector list =
-    List.init 50 (fun _ ->
+let getRandomPoints (): Point list =
+    List.init numberOfPoints (fun _ ->
         // Limit range of random values to the center of the canvas
-        let x = float (int (0.25 * width) + (rnd.Next (int (0.5 * width))))
-        let y = float (int (0.25 * height) + (rnd.Next (int (0.5 * height))))
-        (x, y))
+        let x = int (0.25 * width) + (rnd.Next (int (0.5 * width)))
+        let y = int (0.25 * height) + (rnd.Next (int (0.5 * height)))
+        { X = x; Y = y })
 
 let mutable points = getRandomPoints ()
 
-let startWrapping () = ()
+let startWrapping () =
+    points
+    |> Functional.toConvexHull
+    |> connectPoints ctx
 
 let randomizeButton = document.getElementById "randomizeButton"
 randomizeButton.onclick <- fun _ ->

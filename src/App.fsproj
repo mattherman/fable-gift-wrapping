@@ -3,7 +3,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Vector.fs" />
+    <Compile Include="Types.fs" />
     <Compile Include="Canvas.fs" />
     <Compile Include="GiftWrapping.fs" />
     <Compile Include="App.fs" />
